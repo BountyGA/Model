@@ -129,10 +129,21 @@
 
   <section>
     <h2>Explore the 3D Model</h2>
-    <model-viewer src="model.glb" camera-controls touch-action="pan-y" auto-rotate ar shadow-intensity="1">
-    </model-viewer>
+    <model-viewer
+  src="model.glb"
+  camera-controls
+  touch-action="pan-y"
+  auto-rotate
+  ar
+  shadow-intensity="1"
+  exposure="1.2"
+  disable-zoom
+  alt="Campsite Layout"
+>
+</model-viewer>
 
-    <button onclick="toggleGallery()">📸 Show/Hide Building Images</button>
+
+    <button onclick="toggleGallery()">Show/Hide Building Images</button>
 
     <div class="gallery" id="imageGallery">
       <div class="gallery-item">
