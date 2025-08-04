@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Model Layout Viewer</title>
+  <title>NRCS Oyo Campsite Viewer</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
@@ -30,6 +30,8 @@
       width: 100%;
       max-height: 400px;
       border-radius: 10px;
+      display: block;
+      margin: auto;
     }
 
     model-viewer {
@@ -59,8 +61,11 @@
     }
 
     .gallery img {
-      width: calc(33% - 1rem);
+      width: calc(33.333% - 1rem);
+      max-width: 100%;
       border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
     @media (max-width: 768px) {
@@ -73,19 +78,16 @@
 <body>
 
   <header>
-    <h1>NRCS Proposed Oyo state Campsite Layout</h1>
-    <center><p> Prepared at the discretion of 
-  Ojo Olaleye, Branch Secretary Oyo State H.Q
-   (07032988084)
-    </p></center>
+    <h1>NRCS Proposed Oyo State Campsite Layout</h1>
+    <p>Prepared at the discretion of Ojo Olaleye, Branch Secretary, Oyo State H.Q (07032988084)</p>
   </header>
 
   <section>
     <h2>📽️ Layout Overview Video</h2>
-    <video autoplay loop muted playsinline controls width="100%">
-  <source src="./layout-loop.mp4" type="video/mp4">
-  Your browser doesn’t support this video format.
-</video>
+    <video autoplay loop muted playsinline controls>
+      <source src="layout-loop.mp4" type="video/mp4">
+      Your browser doesn’t support this video format.
+    </video>
   </section>
 
   <section>
@@ -94,7 +96,7 @@
     </model-viewer>
 
     <button onclick="toggleGallery()">📸 Show Building Images</button>
-    <div id="imageGallery" style="display: none; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+    <div class="gallery" id="imageGallery">
       <img src="images/admin_building.jpg" alt="Admin Building">
       <img src="images/dining_hall.jpg" alt="Dining Hall">
       <img src="images/events_hall.jpg" alt="Events Hall">
@@ -104,10 +106,9 @@
 
   <script>
     function toggleGallery() {
-  const gallery = document.getElementById("imageGallery");
-  gallery.style.display = gallery.style.display === "flex" ? "none" : "flex";
-}
-
+      const gallery = document.getElementById("imageGallery");
+      gallery.style.display = gallery.style.display === "flex" ? "none" : "flex";
+    }
   </script>
 
 </body>
