@@ -6,71 +6,105 @@
   <title>NRCS Oyo Campsite Viewer</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
+    :root {
+      --primary: #d40000;
+      --light-bg: #fff;
+      --text: #222;
+      --accent: #aa0000;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+      line-height: 1.6;
     }
 
     header {
-      background: #222;
+      background: var(--primary);
       color: white;
-      padding: 1rem;
+      padding: 1.5rem 1rem;
       text-align: center;
     }
 
+    header h1 {
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+
     section {
-      padding: 1rem;
-      max-width: 1000px;
+      padding: 1.5rem 1rem;
+      max-width: 1100px;
       margin: auto;
     }
 
-    video {
+    iframe, video, model-viewer {
       width: 100%;
-      max-height: 400px;
       border-radius: 10px;
-      display: block;
-      margin: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 2px solid var(--primary);
     }
 
     model-viewer {
-      width: 100%;
       height: 600px;
       margin-top: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 10px;
     }
 
     button {
-      margin: 1rem 0;
+      display: inline-block;
+      margin: 1.5rem 0 0.5rem;
       padding: 0.75rem 1.5rem;
       font-size: 1rem;
-      background: #0077cc;
+      background: var(--primary);
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: var(--accent);
     }
 
     .gallery {
       display: none;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.5rem;
       margin-top: 1rem;
+      justify-content: center;
     }
 
-    .gallery img {
-      width: calc(33.333% - 1rem);
+    .gallery-item {
+      flex: 1 1 calc(30% - 1rem);
       max-width: 100%;
+      text-align: center;
+    }
+
+    .gallery-item img {
+      width: 100%;
       border-radius: 10px;
       object-fit: cover;
+      height: 200px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      border: 2px solid var(--primary);
+    }
+
+    .gallery-item label {
+      display: block;
+      margin-top: 0.5rem;
+      font-weight: bold;
+      color: var(--primary);
     }
 
     @media (max-width: 768px) {
-      .gallery img {
-        width: 100%;
+      .gallery-item {
+        flex: 1 1 100%;
+      }
+
+      model-viewer {
+        height: 400px;
       }
     }
   </style>
@@ -83,18 +117,15 @@
   </header>
 
   <section>
-  <h2>📽 Layout Overview Video</h2>
-  <iframe
-    width="100%"
-    height="360"
-    src="https://www.youtube.com/embed/YOdnhyyRR-E?autoplay=1&mute=1&loop=1&playlist=YOdnhyyRR-E&controls=0&modestbranding=1"
-    title="Layout Overview Video"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen
-  ></iframe>
-</section>
-
+    <iframe
+      height="360"
+      src="https://www.youtube.com/embed/YOdnhyyRR-E?autoplay=1&mute=1&loop=1&playlist=YOdnhyyRR-E&controls=0&modestbranding=1"
+      title="Layout Overview Video"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </section>
 
   <section>
     <h2>Explore the 3D Model</h2>
@@ -102,18 +133,35 @@
     </model-viewer>
 
     <button onclick="toggleGallery()">📸 Show/Hide Building Images</button>
+
     <div class="gallery" id="imageGallery">
-      <img src="images/admin_building.jpg" alt="Admin Building">
-      <img src="images/dining_hall.jpg" alt="Dining Hall">
-      <img src="images/events_hall.jpg" alt="Events Hall">
-      <!-- Add more as needed -->
+      <div class="gallery-item">
+        <img src="images/admin_building.jpg" alt="Admin Building">
+        <label>Admin Building</label>
+      </div>
+      <div class="gallery-item">
+        <img src="images/dining_hall.jpg" alt="Dining Hall">
+        <label>Dining Hall</label>
+      </div>
+      <div class="gallery-item">
+        <img src="images/events_hall.jpg" alt="Events Hall">
+        <label>Events Hall</label>
+      </div>
+      <!-- Add more gallery items as needed -->
     </div>
   </section>
 
   <script>
     function toggleGallery() {
       const gallery = document.getElementById("imageGallery");
-      gallery.style.display = gallery.style.display === "flex" ? "none" : "flex";
+      const isVisible = gallery.style.display === "flex";
+      gallery.style.display = isVisible ? "none" : "flex";
+
+      if (!isVisible) {
+        setTimeout(() => {
+          gallery.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 300);
+      }
     }
   </script>
 
