@@ -3,175 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NRCS Oyo Campsite Viewer</title>
+  <title>NRCS Oyo Campsite Viewer (Bootstrap Edition)</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
   <style>
     :root {
-      --primary: #d40000;
-      --light-bg: #fff;
-      --text: #222;
-      --accent: #aa0000;
+      /* Overriding Bootstrap's default primary color with our red theme */
+      --bs-primary: #d40000;
+      --bs-primary-rgb: 212, 0, 0;
+      --bs-danger: #aa0000; /* Using danger for the darker accent red */
+      --bs-danger-rgb: 170, 0, 0;
+      --bs-body-bg: #f8f9fa; /* Bootstrap's light gray background */
     }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--light-bg);
-      color: var(--text);
-      line-height: 1.6;
+    /* Custom style for a gradient header */
+    .header-gradient {
+      background: linear-gradient(135deg, var(--bs-primary), var(--bs-danger));
     }
-
-    header {
-      background: var(--primary);
-      color: white;
-      padding: 1.5rem 1rem;
-      text-align: center;
-    }
-
-    header h1 {
-      margin-bottom: 0.5rem;
-      font-size: 1.8rem;
-    }
-
-    section {
-      padding: 1.5rem 1rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    iframe, video, model-viewer {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border: 2px solid var(--primary);
-    }
-
+    
+    /* Ensuring the model viewer has a responsive height */
     model-viewer {
-      height: 600px;
-      margin-top: 1rem;
-    }
-
-    button {
-      display: inline-block;
-      margin: 1.5rem 0 0.5rem;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background: var(--accent);
-    }
-
-    .gallery {
-      display: none;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-top: 1rem;
-      justify-content: center;
-    }
-
-    .gallery-item {
-      flex: 1 1 calc(30% - 1rem);
-      max-width: 100%;
-      text-align: center;
-    }
-
-    .gallery-item img {
       width: 100%;
-      border-radius: 10px;
-      object-fit: cover;
-      height: 200px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      border: 2px solid var(--primary);
+      height: 65vh;
+      max-height: 700px;
+      min-height: 400px;
+      border-radius: 0.375rem; /* Match Bootstrap's border-radius */
     }
 
-    .gallery-item label {
-      display: block;
-      margin-top: 0.5rem;
-      font-weight: bold;
-      color: var(--primary);
+    /* A subtle hover effect for gallery cards */
+    .gallery-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     }
-
-    @media (max-width: 768px) {
-      .gallery-item {
-        flex: 1 1 100%;
-      }
-
-      model-viewer {
-        height: 400px;
-      }
+    .gallery-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
     }
   </style>
 </head>
-<body>
+<body class="bg-light">
 
-  <header>
-    <h1>NRCS Proposed Oyo State Campsite Layout</h1>
-    <p>Prepared at the discretion of Ojo Olaleye, Branch Secretary, Oyo State H.Q (07032988084)</p>
+  <header class="header-gradient text-white text-center p-5 shadow-sm">
+    <div class="container">
+      <h1 class="display-4 fw-bold">NRCS Proposed Oyo State Campsite Layout</h1>
+      <p class="lead">Prepared by Ojo Olaleye, Branch Secretary, Oyo State H.Q (07032988084)</p>
+    </div>
   </header>
 
-  <section>
-    <iframe
-      height="360"
-      src="https://www.youtube.com/embed/YOdnhyyRR-E?autoplay=1&mute=1&loop=1&playlist=YOdnhyyRR-E&controls=0&modestbranding=1"
-      title="Layout Overview Video"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
-  </section>
+  <main class="container mt-5">
 
-  <section>
-    <h2>Explore the 3D Model</h2>
-    <model-viewer
-  src="model.glb"
-  camera-controls
-  touch-action="pan-y"
-  auto-rotate
-  ar
-  shadow-intensity="1"
-  exposure="1.2"
-  disable-zoom
-  alt="Campsite Layout"
->
-</model-viewer>
-
-
-    <button onclick="toggleGallery()">Show/Hide Building Images</button>
-
-    <div class="gallery" id="imageGallery">
-      <div class="gallery-item">
-        <img src="images/admin_building.jpg" alt="Admin Building">
-        <label>Admin Building</label>
+    <div class="card shadow-lg mb-5">
+      <div class="card-body p-4 p-md-5">
+        <h2 class="card-title fw-bold border-bottom pb-3 mb-4">Layout Overview Video</h2>
+        <div class="ratio ratio-16x9">
+            <iframe
+            src="http://googleusercontent.com/youtube.com/2" 
+            title="Layout Overview Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          </div>
       </div>
-      <div class="gallery-item">
-        <img src="images/dining_hall.jpg" alt="Dining Hall">
-        <label>Dining Hall</label>
-      </div>
-      <div class="gallery-item">
-        <img src="images/events_hall.jpg" alt="Events Hall">
-        <label>Events Hall</label>
-      </div>
-      <!-- Add more gallery items as needed -->
     </div>
-  </section>
+
+    <div class="card shadow-lg mb-5">
+      <div class="card-body p-4 p-md-5">
+        <h2 class="card-title fw-bold">Explore the Interactive 3D Model</h2>
+        <p class="card-text text-muted">Click and drag to rotate the model. Use your scroll wheel or two fingers to zoom.</p>
+        
+        <model-viewer
+          src="model.glb"
+          camera-controls
+          auto-rotate
+          ar
+          shadow-intensity="1"
+          exposure="1.1"
+          alt="Interactive 3D model of the NRCS Oyo Campsite Layout"
+        ></model-viewer>
+
+        <div class="text-center">
+            <button class="btn btn-primary btn-lg mt-4" onclick="toggleGallery()">
+                Show Building Images
+            </button>
+        </div>
+
+        <div class="row g-4 mt-3 d-none" id="imageGallery">
+          <div class="col-lg-4 col-md-6">
+            <div class="card gallery-card h-100 shadow-sm">
+              <img src="images/admin_building.jpg" class="card-img-top" alt="Admin Building" style="height: 220px; object-fit: cover;">
+              <div class="card-body text-center">
+                <h5 class="card-title">Admin Building</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="card gallery-card h-100 shadow-sm">
+              <img src="images/dining_hall.jpg" class="card-img-top" alt="Dining Hall" style="height: 220px; object-fit: cover;">
+              <div class="card-body text-center">
+                <h5 class="card-title">Dining Hall</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="card gallery-card h-100 shadow-sm">
+              <img src="images/events_hall.jpg" class="card-img-top" alt="Events Hall" style="height: 220px; object-fit: cover;">
+              <div class="card-body text-center">
+                <h5 class="card-title">Events Hall</h5>
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer class="bg-dark text-white text-center p-4 mt-auto">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Nigerian Red Cross Society, Oyo State Branch. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
   <script>
     function toggleGallery() {
       const gallery = document.getElementById("imageGallery");
-      const isVisible = gallery.style.display === "flex";
-      gallery.style.display = isVisible ? "none" : "flex";
+      const button = event.currentTarget;
 
-      if (!isVisible) {
+      // Toggle Bootstrap's 'd-none' utility class to show/hide
+      gallery.classList.toggle('d-none');
+      
+      const isVisible = !gallery.classList.contains('d-none');
+      
+      button.textContent = isVisible ? 'Hide Building Images' : 'Show Building Images';
+
+      if (isVisible) {
+        // Smoothly scroll the gallery into view
         setTimeout(() => {
-          gallery.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 300);
+          gallery.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 100);
       }
     }
   </script>
