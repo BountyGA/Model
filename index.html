@@ -83,19 +83,20 @@
   </header>
 
   <section>
-    <h2>📽️ Layout Overview Video</h2>
-    <video autoplay loop muted playsinline controls>
-      <source src="layout-loop.mp4" type="video/mp4">
-      Your browser doesn’t support this video format.
-    </video>
+    <h2>Layout Overview Video</h2>
+    <video muted autoplay loop playsinline controls>
+  <source src="layout-loop.mp4" type="video/mp4">
+  Your browser doesn’t support this video format.
+</video>
+
   </section>
 
   <section>
-    <h2>🧭 Explore the 3D Model</h2>
+    <h2>Explore the 3D Model</h2>
     <model-viewer src="model.glb" camera-controls touch-action="pan-y" auto-rotate ar shadow-intensity="1">
     </model-viewer>
 
-    <button onclick="toggleGallery()">📸 Show Building Images</button>
+    <button onclick="toggleGallery()">📸 Show/Hide Building Images</button>
     <div class="gallery" id="imageGallery">
       <img src="images/admin_building.jpg" alt="Admin Building">
       <img src="images/dining_hall.jpg" alt="Dining Hall">
