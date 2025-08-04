@@ -73,12 +73,19 @@
 <body>
 
   <header>
-    <h1>3D Campsite Layout</h1>
+    <h1>NRCS Proposed Oyo state Campsite Layout</h1>
+    <center><p> Prepared at the discretion of 
+  Ojo Olaleye, Branch Secretary Oyo State H.Q
+   (07032988084)
+    </p></center>
   </header>
 
   <section>
     <h2>📽️ Layout Overview Video</h2>
-    <video src="layout-loop.mp4" autoplay loop muted playsinline controls></video>
+    <video autoplay loop muted playsinline controls width="100%">
+  <source src="./layout-loop.mp4" type="video/mp4">
+  Your browser doesn’t support this video format.
+</video>
   </section>
 
   <section>
@@ -87,7 +94,7 @@
     </model-viewer>
 
     <button onclick="toggleGallery()">📸 Show Building Images</button>
-    <div class="gallery" id="imageGallery">
+    <div id="imageGallery" style="display: none; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
       <img src="images/admin_building.jpg" alt="Admin Building">
       <img src="images/dining_hall.jpg" alt="Dining Hall">
       <img src="images/events_hall.jpg" alt="Events Hall">
@@ -97,9 +104,10 @@
 
   <script>
     function toggleGallery() {
-      const gallery = document.getElementById("imageGallery");
-      gallery.style.display = gallery.style.display === "flex" ? "none" : "flex";
-    }
+  const gallery = document.getElementById("imageGallery");
+  gallery.style.display = gallery.style.display === "flex" ? "none" : "flex";
+}
+
   </script>
 
 </body>
