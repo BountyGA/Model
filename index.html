@@ -73,6 +73,12 @@
       <div class="card-body p-4 p-md-5">
         <h2 class="card-title fw-bold">Explore the Interactive 3D Model</h2>
         <p class="card-text text-muted">Click and drag to rotate the model. Use your scroll wheel or two fingers to zoom.</p>
+
+        <div class="text-center">
+            <button class="btn btn-primary btn-lg mt-4" onclick="toggleGallery()">
+                Show Building Images
+            </button>
+        </div>
         
         <model-viewer
           src="model.glb"
@@ -84,11 +90,7 @@
           alt="Interactive 3D model of the NRCS Oyo Campsite Layout"
         ></model-viewer>
 
-        <div class="text-center">
-            <button class="btn btn-primary btn-lg mt-4" onclick="toggleGallery()">
-                Show Building Images
-            </button>
-        </div>
+        
 
         <div class="row g-4 mt-3 d-none" id="imageGallery">
           <div class="col-lg-4 col-md-6">
